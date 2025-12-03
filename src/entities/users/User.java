@@ -19,7 +19,6 @@ public abstract class User {
     }
 
     public User (){}
-   
     public String getId(){
         return id;
     }
@@ -27,10 +26,13 @@ public abstract class User {
     public String getName(){
         return name;
 
-    };
+    }
     public String getEmail(){
         return email;
-    };
+    }
+     public String getPassword(){
+    return password;
+   }
     public String getUsername(){
         return username;
 
@@ -41,7 +43,8 @@ public abstract class User {
     }
     public void setName(String name){
         this.name=name;
-    };
+    }
+    
     public void setEmail(String email){
         this.email=email;
 
