@@ -1,4 +1,7 @@
 package src.entities.users;
+import src.entities.Enum.*;
+import src.entities.workitems.*;
+
 public class Developer extends User  {
 
 public Developer(String id, String name, String email, String username, String password, UserRole role){
@@ -30,7 +33,7 @@ public void increaseCapacity(int hours){
 
 }
 
-//Validate assignment + update DAO
+//Validate assignment 
 public void changeTaskStatus(Task task, Status newStatus){
 
     if (task.getAssignedTo() != this) {

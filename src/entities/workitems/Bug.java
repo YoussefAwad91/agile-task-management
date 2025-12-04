@@ -1,4 +1,7 @@
 package src.entities.workitems;
+import src.entities.users.*;
+import src.entities.Enum.*;
+
 
 public class Bug extends WorkItem{
      private User reportedBy; 
@@ -6,13 +9,19 @@ public class Bug extends WorkItem{
       public Bug(){
         super();
     }
-     public Bug(String id,String title, String description, User createdby, 
-      User assignedTo, int estimatedhrs,WorkItemType type, User reportedBy,Severity severity){
-    super(id,title, description, createdby,assignedTo,estimatedhrs,type);
-    this.reportedBy=reportedBy;
-    this.severity=severity;
-     }
+     public Bug(String id,String title, String description, Status status, User createdBy, 
+      User assignedTo, int estimatedHrs,WorkItemType type, User reportedBy,Severity severity){
 
-    public Severity getSeverity(){return this.severity;} 
-    public User getReporter(){return this.reportedBy;}  
+      super(id, title, description, status, createdBy, assignedTo, estimatedHrs, type);
+
+      this.reportedBy=reportedBy;
+      this.severity=severity;
+    }
+
+    public Severity getSeverity(){
+      return severity;
+    } 
+    public User getReporter(){
+      return reportedBy;
+      }  
 }

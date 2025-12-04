@@ -1,4 +1,5 @@
 package src.entities.users;
+import src.entities.Enum.*;
 
 public abstract class User {
     private String id;
@@ -69,7 +70,5 @@ public abstract class User {
      ", role=" + role +
       '}';
     }
-
-public enum UserRole {STAKEHOLDER , DEVELOPER, QA_ENGINEER, SCRUM_MASTER}
 
 }

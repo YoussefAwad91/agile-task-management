@@ -1,4 +1,8 @@
 package src.entities.workitems;
+import src.entities.users.User;
+import src.entities.Enum.*;
+
+
 public abstract class WorkItem {
     
     //attributes 
@@ -18,9 +22,9 @@ public abstract class WorkItem {
     this.title=title;
     this.description=description;
     this.status=status;
-    this.createdby=createdBy;
+    this.createdBy=createdBy;
     this.assignedTo= assignedTo;
-    this.estimatedhrs=estimatedHrs;
+    this.estimatedHrs=estimatedHrs;
     this.type=type;
     
 }
@@ -75,11 +79,11 @@ public abstract class WorkItem {
             text = "Nothing";
         } else {
             text = assignedTo.getUsername();
-        return "ID: " + id +
+      
+            }
+              return "ID: " + id +
             ", Title: " + title +
             ", Status: " + status +
             ", Assigned to: " +text;
-            }
     }
-    enum Severity { LOW, MEDIUM, HIGH, CRITICAL }   
     }
