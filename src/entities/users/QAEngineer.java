@@ -1,8 +1,9 @@
-package src.entities.users;
+package entities.users;
 
-import src.entities.Enum.*;
-import src.entities.workitems.*;
-import s;
+import database.Database;
+import entities.Enum.*;
+import entities.workitems.*;
+import util.IDGenerator;
 
 
 public class QAEngineer extends User {
@@ -21,11 +22,25 @@ public void verifyTask(Task task){
  System.out.print("Task"+ task.getId()+ "has been VERIFIED");
 }
 
-
+//String id,String title, String description, Status status, User createdBy, 
+     // User assignedTo, int estimatedHrs,WorkItemType type, User reportedBy,Severity severity
 public Bug reportBug (Task task, String description){
-    Bug b1 =new Bug();
-    IDGenerator
-        return Bug; 
-   
-}
+    Bug bug = new Bug(
+            IDGenerator.generateID("BUG"),    
+            "Bug reported on: " + task.getTitle(),
+            description,
+            this,                              
+            Severity.MEDIUM                    
+        );
+
+    
+        bug.setAssignedTo(task.getAssignedTo());
+
+
+        Database.bugs.add(bug);
+
+        System.out.println("Bug reported for Task " + task.getId() + ": " + description);
+
+        return bug;
+    }
 }

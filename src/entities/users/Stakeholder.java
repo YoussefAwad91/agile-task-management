@@ -1,5 +1,5 @@
-package src.entities.users;
-import src.entities.Enum.*;
+package entities.users;
+import entities.Enum.*;
 
 
 public class Stakeholder extends User{
@@ -10,7 +10,6 @@ super(id, name,email,username, password,role) ;
 
 //todo: integrate with GUI
 public void createEpic(){
-    Epic();
 }
 public void createStory(){
 

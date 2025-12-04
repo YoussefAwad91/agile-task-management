@@ -1,6 +1,7 @@
-package src.entities.users;
-import src.entities.Enum.*;
-import src.entities.workitems.*;
+package entities.users;
+
+import entities.Enum.*;
+import entities.workitems.*;
 
 public class Developer extends User  {
 

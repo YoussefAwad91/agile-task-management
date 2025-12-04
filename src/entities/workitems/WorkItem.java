@@ -1,6 +1,7 @@
-package src.entities.workitems;
-import src.entities.users.User;
-import src.entities.Enum.*;
+package entities.workitems;
+
+import entities.users.User;
+import entities.Enum.*;
 
 
 public abstract class WorkItem {

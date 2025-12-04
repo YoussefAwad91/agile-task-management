@@ -1,5 +1,6 @@
-package src.entities.users;
-import src.entities.Enum.*;
+package entities.users;
+
+import entities.Enum.*;
 
 public abstract class User {
     private String id;

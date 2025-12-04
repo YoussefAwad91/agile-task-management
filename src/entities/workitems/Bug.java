@@ -1,6 +1,7 @@
-package src.entities.workitems;
-import src.entities.users.*;
-import src.entities.Enum.*;
+package entities.workitems;
+
+import entities.users.*;
+import entities.Enum.*;
 
 
 public class Bug extends WorkItem{
