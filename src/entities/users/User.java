@@ -1,6 +1,7 @@
 package entities.users;
 
 import entities.Enum.*;
+import util.IDGenerator;
 
 public abstract class User {
     private String id;
@@ -10,8 +11,8 @@ public abstract class User {
     private String password;
     private UserRole role ;
 
-    public User(String id, String name, String email, String username, String password, UserRole role) {
-    this.id=id;
+    public User(String name, String email, String username, String password, UserRole role) {
+    this.id=IDGenerator.generateID(this);
     this.name=name;
     this.email=email;
     this.username=username;

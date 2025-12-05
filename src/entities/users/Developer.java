@@ -5,8 +5,8 @@ import entities.workitems.*;
 
 public class Developer extends User  {
 
-public Developer(String id, String name, String email, String username, String password, UserRole role){
-super(id, name,email,username, password,role) ;
+public Developer(String name, String email, String username, String password, UserRole role){
+super(name,email,username, password,role) ;
 }
 
 //attributes 

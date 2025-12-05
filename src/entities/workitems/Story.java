@@ -2,6 +2,8 @@ package entities.workitems;
 
 import entities.Enum.*;
 import entities.users.*;
+import util.IDGenerator;
+
 import java.util.ArrayList;
 
 
@@ -14,8 +16,8 @@ public class Story extends WorkItem {
  public Story(){
     super();
  }
- public Story(String id,String title, String description, Status status, User createdBy, User assignedTo, int estimatedHrs,WorkItemType type){
-    super(id,title, description,status, createdBy,assignedTo,estimatedHrs,type);
+ public Story(String title, String description, User createdBy, User assignedTo, int estimatedHrs,WorkItemType type, Status status){
+    super(IDGenerator.generateID(new Story()),title, description,status, createdBy,assignedTo,estimatedHrs,type);
     this.subtasks= new ArrayList<>();
     database.Database.stories.add(this);
  }

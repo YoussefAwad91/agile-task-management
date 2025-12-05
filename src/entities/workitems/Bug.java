@@ -1,6 +1,7 @@
 package entities.workitems;
 
 import entities.users.*;
+import util.IDGenerator;
 import entities.Enum.*;
 
 
@@ -10,10 +11,10 @@ public class Bug extends WorkItem{
       public Bug(){
         super();
     }
-     public Bug(String id,String title, String description, Status status, User createdBy, 
+     public Bug(String title, String description, Status status, User createdBy, 
       User assignedTo, int estimatedHrs, User reportedBy,Severity severity){
 
-      super(id, title, description, status, createdBy, assignedTo, estimatedHrs, WorkItemType.BUG);
+      super(IDGenerator.generateID(new Bug()), title, description, status, createdBy, assignedTo, estimatedHrs, WorkItemType.BUG);
 
       this.reportedBy=reportedBy;
       this.severity=severity;

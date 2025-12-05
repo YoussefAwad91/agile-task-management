@@ -8,8 +8,8 @@ import java.time.LocalDate;
 public class ScrumMaster extends User { 
 
 public ScrumMaster(){}
-public ScrumMaster(String id, String name, String email, String username, String password, UserRole role){
-super(id, name,email,username, password,role) ;
+public ScrumMaster(String name, String email, String username, String password, UserRole role){
+super(name,email,username, password,role) ;
 }
 
 //Methods
