@@ -1,5 +1,6 @@
 package entities.users;
 
+import entities.Sprint;
 import entities.Enum.*;
 import entities.workitems.*;
 import java.time.LocalDate;

@@ -11,12 +11,13 @@ public class Bug extends WorkItem{
         super();
     }
      public Bug(String id,String title, String description, Status status, User createdBy, 
-      User assignedTo, int estimatedHrs,WorkItemType type, User reportedBy,Severity severity){
+      User assignedTo, int estimatedHrs, User reportedBy,Severity severity){
 
-      super(id, title, description, status, createdBy, assignedTo, estimatedHrs, type);
+      super(id, title, description, status, createdBy, assignedTo, estimatedHrs, WorkItemType.BUG);
 
       this.reportedBy=reportedBy;
       this.severity=severity;
+      database.Database.bugs.add(this);
     }
 
     public Severity getSeverity(){

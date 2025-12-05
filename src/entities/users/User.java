@@ -17,6 +17,7 @@ public abstract class User {
     this.username=username;
     this.password=password;
     this.role=role;
+    database.Database.users.add(this);
 
     }
 

@@ -9,6 +9,7 @@ public class Task extends WorkItem {
 
      public Task(String id,String title, String description, Status status, User createdBy, User assignedTo, int estimatedHrs,WorkItemType type){
       super(id,title, description, status,createdBy,assignedTo,estimatedHrs,type);
+      database.Database.tasks.add(this);
      }
     public void setStatus(Status status){
         this.status=status;

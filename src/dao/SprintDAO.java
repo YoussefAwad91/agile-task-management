@@ -1,7 +1,7 @@
 package dao;
 import java.util.ArrayList;
 import database.Database;
-import entities.workitems.Sprint;
+import entities.Sprint;
 public class SprintDAO {
     // method adding sprint
     public void addSprint(Sprint sprint) {

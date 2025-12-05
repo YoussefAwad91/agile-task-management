@@ -5,7 +5,6 @@ import entities.Enum.*;
 import entities.workitems.*;
 import util.IDGenerator;
 
-
 public class QAEngineer extends User {
  public QAEngineer(String id, String name, String email, String username, String password, UserRole role){
     super( id, name, email, username, password, role ) ;
@@ -24,23 +23,14 @@ public void verifyTask(Task task){
 
 //String id,String title, String description, Status status, User createdBy, 
      // User assignedTo, int estimatedHrs,WorkItemType type, User reportedBy,Severity severity
-public Bug reportBug (Task task, String description){
-    Bug bug = new Bug(
-            IDGenerator.generateID("BUG"),    
-            "Bug reported on: " + task.getTitle(),
-            description,
-            this,                              
-            Severity.MEDIUM                    
-        );
+public Bug reportBug (Task task, String description, int estimatedHrs, Severity severity, User assignedTo){
+    Bug bug = new Bug(IDGenerator.generateID(this), "Bug reported on: " + task.getTitle(), description, Status.TODO, this, assignedTo, estimatedHrs, this, severity);
+    bug.setAssignedTo(task.getAssignedTo());
 
-    
-        bug.setAssignedTo(task.getAssignedTo());
+    Database.bugs.add(bug);
 
+    System.out.println("Bug reported for Task " + task.getId() + ": " + description);
 
-        Database.bugs.add(bug);
-
-        System.out.println("Bug reported for Task " + task.getId() + ": " + description);
-
-        return bug;
+    return bug;
     }
 }

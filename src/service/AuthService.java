@@ -1,3 +1,9 @@
+package service;
+
+import dao.*;
+import entities.users.*;
+import util.PasswordHasher; 
+
 public class AuthService {
 
     UserDAO userDao= new UserDAO(); //? created userdao object

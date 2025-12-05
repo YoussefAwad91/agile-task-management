@@ -1,3 +1,5 @@
+package util;
+
 public class PasswordHasher {
 
     public static boolean verify(String password, String hash){

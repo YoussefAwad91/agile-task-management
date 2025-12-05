@@ -17,6 +17,7 @@ public class Story extends WorkItem {
  public Story(String id,String title, String description, Status status, User createdBy, User assignedTo, int estimatedHrs,WorkItemType type){
     super(id,title, description,status, createdBy,assignedTo,estimatedHrs,type);
     this.subtasks= new ArrayList<>();
+    database.Database.stories.add(this);
  }
  
  //Methods
