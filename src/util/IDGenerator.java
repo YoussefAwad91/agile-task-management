@@ -1,5 +1,4 @@
 package util;
-
 import entities.users.User;
 import entities.workitems.*;
 import database.Database;

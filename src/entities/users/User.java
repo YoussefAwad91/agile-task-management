@@ -19,7 +19,6 @@ public abstract class User {
     this.username=username;
     this.password=PasswordHasher.hash(password);
     this.role=role;
-    database.Database.users.add(this);
 
     }
 

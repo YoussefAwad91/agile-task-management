@@ -7,6 +7,7 @@ import entities.users.*;
 import entities.workitems.*;
 import entities.Enum.*;
 import service.*;
+import util.PasswordHasher;
 import dao.*;
 import java.time.LocalDate;
 
@@ -18,6 +19,7 @@ public class Main {
         Database.initialize();
 
         // DAO objects 
+        UserDAO userDAO = new UserDAO();
         EpicDAO epicDAO = new EpicDAO();
         StoryDAO storyDAO = new StoryDAO();
         TaskDAO taskDAO = new TaskDAO();
@@ -36,6 +38,8 @@ public class Main {
         authService.register(developer1);
         authService.register(qa1);
         authService.register(scrumMaster1);
+        User qa2 = new QAEngineer("Awad", "Awad@mail.com", "Awad4", "9105", UserRole.SCRUM_MASTER);
+        System.out.println(authService.register(qa2));
 
         System.out.println("Users registered successfully!");
 
@@ -92,6 +96,7 @@ public class Main {
 
         System.out.println("\n Everything is working successfully");
 
-        //System.out.println(Database.users);
+        System.out.println(Database.users);
+        System.out.println(PasswordHasher.verify("10206",(userDAO.findByUsername("malak1").getPassword())));
     }
 }
