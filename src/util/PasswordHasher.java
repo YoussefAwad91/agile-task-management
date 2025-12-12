@@ -9,7 +9,7 @@ public class PasswordHasher {
         return false;
     }
 
-    private static String hash(String password){
+    public static String hash(String password){
         return ((Integer)(password.hashCode())).toString();
     } 
 }

@@ -47,7 +47,7 @@ public class Sprint {
         } 
         int completedItems = 0;
         for(WorkItem item : sprintBacklog){
-            if(item.getStatus() == Status.DONE){
+            if(item.getStatus() == Status.VERIFIED){
                 completedItems++; 
             }
         }
@@ -64,6 +64,10 @@ public class Sprint {
     }
     public String getObjective() {
         return objective;
+    }
+
+    public ArrayList<WorkItem> getBacklog(){
+        return sprintBacklog;
     }
 }
     

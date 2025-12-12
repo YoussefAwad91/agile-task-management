@@ -2,6 +2,7 @@ package entities.users;
 
 import entities.Enum.*;
 import util.IDGenerator;
+import util.PasswordHasher;
 
 public abstract class User {
     private String id;
@@ -16,7 +17,7 @@ public abstract class User {
     this.name=name;
     this.email=email;
     this.username=username;
-    this.password=password;
+    this.password=PasswordHasher.hash(password);
     this.role=role;
     database.Database.users.add(this);
 

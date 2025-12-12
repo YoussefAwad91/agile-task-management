@@ -1,5 +1,7 @@
 package entities.users;
 
+import java.util.ArrayList;
+
 import entities.Enum.*;
 import entities.workitems.*;
 
@@ -11,6 +13,7 @@ super(name,email,username, password,role) ;
 
 //attributes 
 private int capacityHours;
+private ArrayList<Task> assignedTasks;
 
 //methodes
 public int getCapacity(){
@@ -43,6 +46,10 @@ public void changeTaskStatus(Task task, Status newStatus){
     }
     task.setStatus(newStatus);
     System.out.println("Task " + task.getId() + " status updated to " + newStatus);
+}
+
+public ArrayList<Task> getAssignedTasks(){
+    return assignedTasks;
 }
 
 }
