@@ -7,8 +7,11 @@ import entities.users.ScrumMaster;
 import entities.users.Stakeholder;
 import entities.users.User;
 import database.Database;
+import entities.workitems.*;
 
 import gui.scenes.*;
+
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -23,6 +26,10 @@ public class MainApp extends Application {
     public void start(Stage stage) {
         LoginView loginView = new LoginView();
         RegisterView registerView = new RegisterView();
+        StakeholderView stakeholderView = new StakeholderView();
+        ScrumMasterView scrumMasterView = new ScrumMasterView();
+        QAEngineerView qaEngineerView = new QAEngineerView();
+        DeveloperView developerView = new DeveloperView();
 
         // control
         // ---------------- sign in ----------------
@@ -32,7 +39,24 @@ public class MainApp extends Application {
                 loggedInUser = user;
                 (loginView.getErrorLabel()).setText("");
                 System.out.println(loggedInUser.toString());
-                // todo: switch to appropriate scene
+                Scene scene = null;
+                if(loggedInUser instanceof Developer){
+                    scene = new Scene(developerView.getRoot(), 500, 400);
+                }
+                else if (loggedInUser instanceof QAEngineer){
+                    scene = new Scene(qaEngineerView.getRoot(), 600, 650);
+                }
+                else if (loggedInUser instanceof ScrumMaster){
+                    scene = new Scene(scrumMasterView.getRoot(), 700, 500);
+                }
+                else if (loggedInUser instanceof Stakeholder){
+                    scene = new Scene(stakeholderView.getRoot(), 600, 600);
+                }
+                else{
+                    scene = new Scene(loginView.getRoot(), 500, 300);
+                }
+                stage.setScene(scene);
+                stage.show();
             } else {
                (loginView.getErrorLabel()).setText("Username doesn't exist or password incorrect");
             }
@@ -42,8 +66,8 @@ public class MainApp extends Application {
             Scene scene = new Scene(registerView.getRoot(), 600, 400);
             stage.setTitle("Register User");
             stage.setScene(scene);
-            stage.show();
         });
+
         // ---------------- register ----------------
         (registerView.getRegisterButton()).setOnAction(event ->{
             User user = null;
@@ -95,23 +119,36 @@ public class MainApp extends Application {
             }
             else{
                 registerView.getUsernameField().setText("");
-                (registerView.getErrorLabel()).setText("Username not unique");
+                (registerView.getErrorLabel()).setText("Username already exists");
             }
+        });
 
-            
+        // --------- developer ----------
+        (developerView.getViewMyTasksButton()).setOnAction(event ->{
+            ArrayList<Task> tasks = ((Developer)loggedInUser).getAssignedTasks();
+            String tasks_string = "";
+            for (Task task: tasks){
+                tasks_string += task.getTitle();
+            }
+            (developerView.getTasksDisplayArea()).setText(tasks_string);
 
+        });
 
-
-
+        (developerView.getLogoutButton()).setOnAction(event ->{
+            loggedInUser = null;
+            Scene scene = new Scene(loginView.getRoot(), 500, 300);
+            stage.setScene(scene);
         });
 
 
 
 
-
-
-
         Scene scene = new Scene(loginView.getRoot(), 500, 300);
+        //scene = new Scene(registerView.getRoot(), 500, 300);
+        //scene = new Scene(stakeholderView.getRoot(), 600, 600);
+        //scene = new Scene(scrumMasterView.getRoot(), 700, 500);
+        //scene = new Scene(developerView.getRoot(), 500, 400);
+        //scene = new Scene(qaEngineerView.getRoot(), 600, 650);
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();

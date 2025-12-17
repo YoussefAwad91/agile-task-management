@@ -17,10 +17,14 @@ public class Task extends WorkItem {
 
     }
 
-  @Override
-public void changeStatus(Status status){
-    this.status = status;
-}
+    @Override
+    public void changeStatus(Status status){
+        this.status = status;
+    }
+
+    public String getTitle(){
+        return title;
+    }
 
     
 }
