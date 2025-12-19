@@ -1,0 +1,183 @@
+/* =====================================================
+   GLOBAL
+   ===================================================== */
+.root {
+    -fx-font-family: "Segoe UI", "Inter", "Roboto", sans-serif;
+    -fx-background-color: #222222;
+    -fx-text-fill: #E0E0E0;
+}
+
+/* =====================================================
+   LABELS & TEXT
+   ===================================================== */
+.label {
+    -fx-text-fill: #E0E0E0;
+}
+
+.text {
+    -fx-fill: #E0E0E0;
+}
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+.button {
+    -fx-background-color: #1E1E1E;
+    -fx-text-fill: #E0E0E0;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16;
+    -fx-border-radius: 8;
+    -fx-border-color: #2C2C2C;
+}
+
+.button:hover {
+    -fx-background-color: #2A2A2A;
+}
+
+.button:pressed {
+    -fx-background-color: #333333;
+}
+
+/* Primary / Accent button */
+.button.primary {
+    -fx-background-color: #3A82F7;
+    -fx-text-fill: white;
+}
+
+.button.primary:hover {
+    -fx-background-color: #4B8CFF;
+}
+
+/* =====================================================
+   TEXT FIELDS & PASSWORD FIELDS
+   ===================================================== */
+.text-field,
+.password-field {
+    -fx-background-color: #1E1E1E;
+    -fx-text-fill: #E0E0E0;
+    -fx-prompt-text-fill: #9E9E9E;
+    -fx-border-color: #2C2C2C;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8;
+}
+
+.text-field:focused,
+.password-field:focused {
+    -fx-border-color: #3A82F7;
+}
+
+/* =====================================================
+   TEXT AREA
+   ===================================================== */
+.text-area {
+    -fx-background-color: #1E1E1E;
+    -fx-text-fill: #E0E0E0;
+    -fx-border-color: #2C2C2C;
+}
+
+.text-area .content {
+    -fx-background-color: #1E1E1E;
+}
+
+/* =====================================================
+   COMBO BOX
+   ===================================================== */
+.combo-box {
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: #2C2C2C;
+    -fx-border-radius: 6;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #1E1E1E;
+    -fx-text-fill: #E0E0E0;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: #2C2C2C;
+}
+
+/* =====================================================
+   CHECKBOX & RADIO
+   ===================================================== */
+.check-box,
+.radio-button {
+    -fx-text-fill: #E0E0E0;
+}
+
+.check-box .box,
+.radio-button .radio {
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: #2C2C2C;
+}
+
+/* =====================================================
+   TABLE VIEW
+   ===================================================== */
+.table-view {
+    -fx-background-color: #121212;
+    -fx-border-color: #2C2C2C;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #1A1A1A;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: #1A1A1A;
+    -fx-border-color: #2C2C2C;
+}
+
+.table-row-cell {
+    -fx-background-color: #121212;
+    -fx-text-fill: #E0E0E0;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #2A2A2A;
+}
+
+/* =====================================================
+   SCROLL BAR
+   ===================================================== */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #2C2C2C;
+    -fx-background-radius: 6;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #3A3A3A;
+}
+
+/* =====================================================
+   MENU BAR
+   ===================================================== */
+.menu-bar {
+    -fx-background-color: #1A1A1A;
+}
+
+.menu,
+.menu-item {
+    -fx-text-fill: #E0E0E0;
+}
+
+.menu-item:focused {
+    -fx-background-color: #2A2A2A;
+}
+
+/* =====================================================
+   TOOLTIP
+   ===================================================== */
+.tooltip {
+    -fx-background-color: #2A2A2A;
+    -fx-text-fill: #E0E0E0;
+    -fx-background-radius: 6;
+    -fx-padding: 6 10;
+}

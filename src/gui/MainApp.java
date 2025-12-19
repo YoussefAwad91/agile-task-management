@@ -57,21 +57,41 @@ public class MainApp extends Application {
                 if(loggedInUser instanceof Developer){
                     populateDeveloperComboBoxes();
                     scene = new Scene(developerView.getRoot(), 500, 400);
+                    scene.getStylesheets().add(
+                        getClass().getResource("dark.css").toExternalForm()
+                    );
+                    stage.setTitle("Developer");
                 }
                 else if (loggedInUser instanceof QAEngineer){
                     populateQAComboBoxes();
                     scene = new Scene(qaEngineerView.getRoot(), 600, 650);
+                    scene.getStylesheets().add(
+                        getClass().getResource("dark.css").toExternalForm()
+                    );
+                    stage.setTitle("QA Engineer");
                 }
                 else if (loggedInUser instanceof ScrumMaster){
                     populateScrumMasterComboBoxes();
                     scene = new Scene(scrumMasterView.getRoot(), 700, 700);
+                    scene.getStylesheets().add(
+                        getClass().getResource("dark.css").toExternalForm()
+                    );
+                    stage.setTitle("Scrum Master");
                 }
                 else if (loggedInUser instanceof Stakeholder){
                     populateStakeholderComboBoxes();
                     scene = new Scene(stakeholderView.getRoot(), 600, 600);
+                    scene.getStylesheets().add(
+                        getClass().getResource("dark.css").toExternalForm()
+                    );
+                    stage.setTitle("Stakeholder");
                 }
                 else{
                     scene = new Scene(loginView.getRoot(), 500, 300);
+                    scene.getStylesheets().add(
+                        getClass().getResource("dark.css").toExternalForm()
+                    );
+                    stage.setTitle("Login");
                 }
                 stage.setScene(scene);
                 stage.show();
@@ -82,7 +102,10 @@ public class MainApp extends Application {
 
         (loginView.getRegisterButton()).setOnAction(event -> {
             Scene scene = new Scene(registerView.getRoot(), 600, 400);
-            stage.setTitle("Register User");
+            scene.getStylesheets().add(
+                getClass().getResource("dark.css").toExternalForm()
+            );
+            stage.setTitle("Register");
             stage.setScene(scene);
         });
 
@@ -132,6 +155,9 @@ public class MainApp extends Application {
                 registerView.getPasswordField().setText("");
 
                 Scene scene = new Scene(loginView.getRoot(), 500, 300);
+                scene.getStylesheets().add(
+                    getClass().getResource("dark.css").toExternalForm()
+                );
                 stage.setTitle("Login");
                 stage.setScene(scene);
             }
@@ -212,6 +238,10 @@ public class MainApp extends Application {
         (developerView.getLogoutButton()).setOnAction(event ->{
             loggedInUser = null;
             Scene scene = new Scene(loginView.getRoot(), 500, 300);
+            scene.getStylesheets().add(
+                getClass().getResource("dark.css").toExternalForm()
+            );
+            stage.setTitle("Login");
             stage.setScene(scene);
         });
 
@@ -322,6 +352,10 @@ public class MainApp extends Application {
         (qaEngineerView.getLogoutButton()).setOnAction(event -> {
             loggedInUser = null;
             Scene scene = new Scene(loginView.getRoot(), 500, 300);
+            scene.getStylesheets().add(
+                getClass().getResource("dark.css").toExternalForm()
+            );
+            stage.setTitle("Login");
             stage.setScene(scene);
         });
 
@@ -466,6 +500,10 @@ public class MainApp extends Application {
         (scrumMasterView.getLogoutButton()).setOnAction(event -> {
             loggedInUser = null;
             Scene scene = new Scene(loginView.getRoot(), 500, 300);
+            scene.getStylesheets().add(
+                getClass().getResource("dark.css").toExternalForm()
+            );
+            stage.setTitle("Login");
             stage.setScene(scene);
         });
 
@@ -524,12 +562,20 @@ public class MainApp extends Application {
         (stakeholderView.getLogoutButton()).setOnAction(event -> {
             loggedInUser = null;
             Scene scene = new Scene(loginView.getRoot(), 500, 300);
+            scene.getStylesheets().add(
+                getClass().getResource("dark.css").toExternalForm()
+            );
+            stage.setTitle("Login");
             stage.setScene(scene);
         });
 
 
 
         Scene scene = new Scene(loginView.getRoot(), 500, 300);
+        scene.getStylesheets().add(
+            getClass().getResource("dark.css").toExternalForm()
+        );
+
         //scene = new Scene(registerView.getRoot(), 500, 300);
         //scene = new Scene(stakeholderView.getRoot(), 600, 600);
         //scene = new Scene(scrumMasterView.getRoot(), 700, 700);
