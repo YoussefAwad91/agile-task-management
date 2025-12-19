@@ -368,6 +368,12 @@ public class MainApp extends Application {
                 scrumMasterView.getStatusLabel().setText("Please fill all fields: title, objective, start and end dates.");
                 return;
             }
+
+            if (!end.isAfter(start)) {
+                scrumMasterView.getStatusLabel().setText("End date must be after start date.");
+                return;
+            }
+
             String id = IDGenerator.generateID(new Sprint());
             Sprint sprint = new Sprint(id, title, start, end, objective);
             scrumMasterView.getStatusLabel().setText("Created sprint " + sprint.getId());

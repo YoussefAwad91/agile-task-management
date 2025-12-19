@@ -14,8 +14,18 @@ super(name,email,username, password,role) ;
 
 //Methods
 public Sprint createSprint(String id, LocalDate start, LocalDate end, String objective){
+    if (start == null || end == null) {
+        System.out.println("Cannot create sprint: start or end date is null.");
+        return null;
+    }
+
+    if (!end.isAfter(start)) {
+        System.out.println("Cannot create sprint: end date must be after start date.");
+        return null;
+    }
+
     Sprint sprint = new Sprint(id, start, end, objective);
-    return sprint ;
+    return sprint;
 
 }
 
