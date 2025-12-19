@@ -9,12 +9,12 @@ import entities.workitems.Bug;
 import entities.Sprint;
 
 public class Database {
-    public static ArrayList<User> users;
-    public static ArrayList<Epic> epics;
-    public static ArrayList<Story> stories;
-    public static ArrayList<Task> tasks;
-    public static ArrayList<Bug> bugs;
-    public static ArrayList<Sprint> sprints;
+    public static ArrayList<User> users = new ArrayList<>();
+    public static ArrayList<Epic> epics = new ArrayList<>();
+    public static ArrayList<Story> stories = new ArrayList<>();
+    public static ArrayList<Task> tasks = new ArrayList<>();
+    public static ArrayList<Bug> bugs = new ArrayList<>();
+    public static ArrayList<Sprint> sprints = new ArrayList<>();
 
     public static void initialize() {
         // If the (whatever) list is null, create an empty ArrayList for it.

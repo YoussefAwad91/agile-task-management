@@ -11,6 +11,7 @@ public class ScrumMasterView {
 
     private final Label welcomeLabel = new Label();
     private final Button createSprintButton = new Button("Create Sprint");
+    private final Button createTaskButton = new Button("Create Task");
     private final Button assignWorkItemButton = new Button("Assign Work Item to Sprint");
     private final Button assignUserButton = new Button("Assign User to Sprint");
     private final Button reopenWorkItemButton = new Button("Reopen Work Item");
@@ -19,9 +20,17 @@ public class ScrumMasterView {
     private final Button logoutButton = new Button("Logout");
     
     // Create Sprint Fields
+    private final TextField sprintTitleField = new TextField();
     private final TextField sprintObjectiveField = new TextField();
     private final DatePicker startDatePicker = new DatePicker();
     private final DatePicker endDatePicker = new DatePicker();
+    
+    // Create Task Fields
+    private final TextField taskTitleField = new TextField();
+    private final TextArea taskDescriptionArea = new TextArea();
+    private final TextField taskEstimatedHoursField = new TextField();
+    private final ComboBox<String> parentStoryComboBox = new ComboBox<>();
+    private final ComboBox<String> assignDeveloperComboBox = new ComboBox<>();
     
     // Assign Work Item Fields
     private final ComboBox<String> workItemComboBox = new ComboBox<>();
@@ -65,6 +74,10 @@ public class ScrumMasterView {
         Tab createSprintTab = new Tab("Create Sprint");
         createSprintTab.setContent(createSprintForm());
         
+        // Create Task Tab
+        Tab createTaskTab = new Tab("Create Task");
+        createTaskTab.setContent(createTaskForm());
+        
         // Assign Work Item Tab
         Tab assignWorkTab = new Tab("Assign Work Item");
         assignWorkTab.setContent(createAssignWorkItemForm());
@@ -86,7 +99,8 @@ public class ScrumMasterView {
         progressTab.setContent(createProgressDisplay());
 
         tabPane.getTabs().addAll(
-            createSprintTab, 
+            createSprintTab,
+            createTaskTab,
             assignWorkTab, 
             assignUserTab, 
             reopenTab, 
@@ -115,6 +129,11 @@ public class ScrumMasterView {
         Label instructionLabel = new Label("Create New Sprint:");
         instructionLabel.setFont(new Font(16));
 
+        Label titleLabel = new Label("Sprint Title:");
+        titleLabel.setFont(new Font(14));
+        sprintTitleField.setPromptText("Enter sprint title");
+        sprintTitleField.setPrefWidth(500);
+
         Label objectiveLabel = new Label("Sprint Objective:");
         objectiveLabel.setFont(new Font(14));
         sprintObjectiveField.setPromptText("Enter sprint objective/goal");
@@ -141,9 +160,67 @@ public class ScrumMasterView {
 
         form.getChildren().addAll(
             instructionLabel,
+            titleLabel, sprintTitleField,
             objectiveLabel, sprintObjectiveField,
             startLabel, startDatePicker,
             endLabel, endDatePicker,
+            submitButton,
+            infoLabel
+        );
+
+        return form;
+    }
+
+    private VBox createTaskForm() {
+        VBox form = new VBox(15);
+        form.setPadding(new Insets(20));
+        form.setAlignment(Pos.TOP_LEFT);
+
+        Label instructionLabel = new Label("Create New Task:");
+        instructionLabel.setFont(new Font(16));
+
+        Label titleLabel = new Label("Task Title:");
+        titleLabel.setFont(new Font(14));
+        taskTitleField.setPromptText("Enter task title");
+        taskTitleField.setPrefWidth(500);
+
+        Label descLabel = new Label("Description:");
+        descLabel.setFont(new Font(14));
+        taskDescriptionArea.setPromptText("Enter task description");
+        taskDescriptionArea.setPrefHeight(150);
+        taskDescriptionArea.setWrapText(true);
+
+        Label hoursLabel = new Label("Estimated Hours:");
+        hoursLabel.setFont(new Font(14));
+        taskEstimatedHoursField.setPromptText("Enter estimated hours");
+        taskEstimatedHoursField.setPrefWidth(200);
+
+        Label storyLabel = new Label("Parent Story:");
+        storyLabel.setFont(new Font(14));
+        parentStoryComboBox.setPromptText("Select parent story");
+        parentStoryComboBox.setPrefWidth(500);
+
+        Label developerLabel = new Label("Assign to Developer:");
+        developerLabel.setFont(new Font(14));
+        assignDeveloperComboBox.setPromptText("Select developer (optional)");
+        assignDeveloperComboBox.setPrefWidth(500);
+
+        Button submitButton = new Button("Create Task");
+        submitButton.setFont(new Font(14));
+        submitButton.setPrefWidth(150);
+        submitButton.setOnAction(e -> createTaskButton.fire());
+
+        Label infoLabel = new Label("Note: Tasks must be linked to a parent Story.");
+        infoLabel.setFont(new Font(12));
+        infoLabel.setTextFill(javafx.scene.paint.Color.web("#666666"));
+
+        form.getChildren().addAll(
+            instructionLabel,
+            titleLabel, taskTitleField,
+            descLabel, taskDescriptionArea,
+            hoursLabel, taskEstimatedHoursField,
+            storyLabel, parentStoryComboBox,
+            developerLabel, assignDeveloperComboBox,
             submitButton,
             infoLabel
         );
@@ -301,6 +378,7 @@ public class ScrumMasterView {
     // Getters
     public Label getWelcomeLabel() { return welcomeLabel; }
     public Button getCreateSprintButton() { return createSprintButton; }
+    public Button getCreateTaskButton() { return createTaskButton; }
     public Button getAssignWorkItemButton() { return assignWorkItemButton; }
     public Button getAssignUserButton() { return assignUserButton; }
     public Button getReopenWorkItemButton() { return reopenWorkItemButton; }
@@ -309,8 +387,15 @@ public class ScrumMasterView {
     public Button getLogoutButton() { return logoutButton; }
     
     public TextField getSprintObjectiveField() { return sprintObjectiveField; }
+    public TextField getSprintTitleField() { return sprintTitleField; }
     public DatePicker getStartDatePicker() { return startDatePicker; }
     public DatePicker getEndDatePicker() { return endDatePicker; }
+    
+    public TextField getTaskTitleField() { return taskTitleField; }
+    public TextArea getTaskDescriptionArea() { return taskDescriptionArea; }
+    public TextField getTaskEstimatedHoursField() { return taskEstimatedHoursField; }
+    public ComboBox<String> getParentStoryComboBox() { return parentStoryComboBox; }
+    public ComboBox<String> getAssignDeveloperComboBox() { return assignDeveloperComboBox; }
     
     public ComboBox<String> getWorkItemComboBox() { return workItemComboBox; }
     public ComboBox<String> getWorkItemSprintComboBox() { return workItemSprintComboBox; }
@@ -324,9 +409,18 @@ public class ScrumMasterView {
     
     // Utility methods
     public void clearSprintForm() {
+        sprintTitleField.clear();
         sprintObjectiveField.clear();
         startDatePicker.setValue(null);
         endDatePicker.setValue(null);
+    }
+    
+    public void clearTaskForm() {
+        taskTitleField.clear();
+        taskDescriptionArea.clear();
+        taskEstimatedHoursField.clear();
+        parentStoryComboBox.getSelectionModel().clearSelection();
+        assignDeveloperComboBox.getSelectionModel().clearSelection();
     }
     
     public void clearAssignWorkItemForm() {

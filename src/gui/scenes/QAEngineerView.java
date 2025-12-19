@@ -14,10 +14,14 @@ public class QAEngineerView {
     private final Button reportBugButton = new Button("Report Bug");
     private final Button viewTasksButton = new Button("View Tasks to Verify");
     private final Button viewBugsButton = new Button("View Reported Bugs");
+    private final Button assignTaskToQAButton = new Button("Assign Task to Me");
     private final Button logoutButton = new Button("Logout");
     
     // Verify Task Fields
     private final ComboBox<String> verifyTaskComboBox = new ComboBox<>();
+    
+    // Assign Task to QA Fields
+    private final ComboBox<String> assignTaskComboBox = new ComboBox<>();
     
     // Report Bug Fields
     private final ComboBox<String> bugTaskComboBox = new ComboBox<>();
@@ -30,6 +34,10 @@ public class QAEngineerView {
     private final TextArea tasksDisplayArea = new TextArea();
     private final TextArea bugsDisplayArea = new TextArea();
     private final Label statusLabel = new Label();
+
+    public QAEngineerView(){
+        severityComboBox.getItems().addAll("LOW", "MEDIUM", "HIGH", "CRITICAL");
+    }
 
     public Parent getRoot() {
         BorderPane root = new BorderPane();
@@ -61,6 +69,10 @@ public class QAEngineerView {
         Tab verifyTab = new Tab("Verify Task");
         verifyTab.setContent(createVerifyTaskForm());
         
+        // Assign Task to QA Tab
+        Tab assignTab = new Tab("Assign Task to Me");
+        assignTab.setContent(createAssignTaskForm());
+        
         // Report Bug Tab
         Tab bugTab = new Tab("Report Bug");
         bugTab.setContent(createReportBugForm());
@@ -69,7 +81,7 @@ public class QAEngineerView {
         Tab bugsTab = new Tab("Reported Bugs");
         bugsTab.setContent(createBugsDisplay());
 
-        tabPane.getTabs().addAll(tasksTab, verifyTab, bugTab, bugsTab);
+        tabPane.getTabs().addAll(tasksTab, verifyTab, assignTab, bugTab, bugsTab);
         root.setCenter(tabPane);
 
         // Bottom: Status
@@ -136,6 +148,39 @@ public class QAEngineerView {
         return form;
     }
 
+    private VBox createAssignTaskForm() {
+        VBox form = new VBox(15);
+        form.setPadding(new Insets(20));
+        form.setAlignment(Pos.TOP_LEFT);
+
+        Label instructionLabel = new Label("Assign Task to Yourself for Testing:");
+        instructionLabel.setFont(new Font(16));
+
+        Label taskLabel = new Label("Select Task:");
+        taskLabel.setFont(new Font(14));
+        assignTaskComboBox.setPromptText("Choose a completed task (status DONE)");
+        assignTaskComboBox.setPrefWidth(500);
+
+        Button submitButton = new Button("Assign to Me");
+        submitButton.setFont(new Font(14));
+        submitButton.setPrefWidth(150);
+        submitButton.setOnAction(e -> assignTaskToQAButton.fire());
+
+        Label infoLabel = new Label("Note: Only tasks with status DONE can be assigned. This allows you to track testing work.");
+        infoLabel.setFont(new Font(12));
+        infoLabel.setTextFill(javafx.scene.paint.Color.web("#666666"));
+        infoLabel.setWrapText(true);
+
+        form.getChildren().addAll(
+            instructionLabel,
+            taskLabel, assignTaskComboBox,
+            submitButton,
+            infoLabel
+        );
+
+        return form;
+    }
+
     private VBox createReportBugForm() {
         VBox form = new VBox(15);
         form.setPadding(new Insets(20));
@@ -164,7 +209,7 @@ public class QAEngineerView {
         severityLabel.setFont(new Font(14));
         severityComboBox.setPromptText("Select severity level");
         severityComboBox.setPrefWidth(300);
-        severityComboBox.getItems().addAll("LOW", "MEDIUM", "HIGH", "CRITICAL");
+        
 
         Label hoursLabel = new Label("Estimated Hours to Fix:");
         hoursLabel.setFont(new Font(14));
@@ -212,11 +257,13 @@ public class QAEngineerView {
     public Label getWelcomeLabel() { return welcomeLabel; }
     public Button getVerifyTaskButton() { return verifyTaskButton; }
     public Button getReportBugButton() { return reportBugButton; }
+    public Button getAssignTaskToQAButton() { return assignTaskToQAButton; }
     public Button getViewTasksButton() { return viewTasksButton; }
     public Button getViewBugsButton() { return viewBugsButton; }
     public Button getLogoutButton() { return logoutButton; }
     
     public ComboBox<String> getVerifyTaskComboBox() { return verifyTaskComboBox; }
+    public ComboBox<String> getAssignTaskComboBox() { return assignTaskComboBox; }
     public ComboBox<String> getBugTaskComboBox() { return bugTaskComboBox; }
     public TextField getBugTitleField() { return bugTitleField; }
     public TextArea getBugDescriptionArea() { return bugDescriptionArea; }
@@ -230,6 +277,10 @@ public class QAEngineerView {
     // Utility methods
     public void clearVerifyForm() {
         verifyTaskComboBox.getSelectionModel().clearSelection();
+    }
+    
+    public void clearAssignForm() {
+        assignTaskComboBox.getSelectionModel().clearSelection();
     }
     
     public void clearBugForm() {

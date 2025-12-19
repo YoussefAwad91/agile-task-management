@@ -20,10 +20,15 @@ public class DeveloperView {
     private final ComboBox<String> taskComboBox = new ComboBox<>();
     private final ComboBox<String> statusComboBox = new ComboBox<>();
     
+    
     // Display areas
     private final TextArea tasksDisplayArea = new TextArea();
     private final TextArea sprintsDisplayArea = new TextArea();
     private final Label statusLabel = new Label();
+
+    public DeveloperView(){
+        statusComboBox.getItems().addAll("TODO", "IN_PROGRESS", "DONE");
+    }
 
     public Parent getRoot() {
         BorderPane root = new BorderPane();
@@ -114,7 +119,6 @@ public class DeveloperView {
         statusComboBox.setPrefWidth(300);
         
         // Populate status options
-        statusComboBox.getItems().addAll("TODO", "IN_PROGRESS", "DONE");
 
         Button submitButton = new Button("Update Status");
         submitButton.setFont(new Font(14));

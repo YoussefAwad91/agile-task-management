@@ -10,6 +10,7 @@ import entities.Enum.*;
 public class Sprint {
 
     private String id; 
+    private String title;
     private LocalDate startDate; 
     private LocalDate endDate; 
     private String objective; 
@@ -19,6 +20,17 @@ public class Sprint {
     public Sprint(){}
     public Sprint(String id, LocalDate startDate, LocalDate endDate, String objective){
         this.id = id; 
+        this.startDate = startDate; 
+        this.endDate = endDate; 
+        this.objective = objective; 
+        this.teamMembers = new ArrayList<User>();
+        this.sprintBacklog = new ArrayList<WorkItem>();
+        database.Database.sprints.add(this);
+    }
+
+    public Sprint(String id, String title, LocalDate startDate, LocalDate endDate, String objective){
+        this.id = id; 
+        this.title = title;
         this.startDate = startDate; 
         this.endDate = endDate; 
         this.objective = objective; 
@@ -61,6 +73,9 @@ public class Sprint {
 
     public String getId() {
         return id;
+    }
+    public String getTitle() {
+        return title;
     }
     public String getObjective() {
         return objective;
