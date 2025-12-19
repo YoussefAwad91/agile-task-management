@@ -181,3 +181,120 @@
     -fx-background-radius: 6;
     -fx-padding: 6 10;
 }
+
+/* =====================================================
+   TAB PANE
+   ===================================================== */
+.tab-pane {
+    -fx-background-color: #222222;
+}
+
+/* Header area */
+.tab-pane .tab-header-area {
+    -fx-background-color: #222222;
+    -fx-padding: 4 4 0 4;
+}
+
+/* Tabs */
+.tab-pane .tab {
+    -fx-background-color: #222222;
+    -fx-background-radius: 8 8 0 0;
+    -fx-border-color: #2C2C2C;
+    -fx-border-radius: 8 8 0 0;
+    -fx-padding: 8 16;
+}
+
+.tab-pane .tab:hover {
+    -fx-background-color: #2A2A2A;
+}
+
+/* Selected tab */
+.tab-pane .tab:selected {
+    -fx-background-color: #222222;
+    -fx-border-color: #3A82F7;
+    -fx-border-width: 0 0 2 0;
+}
+
+/* Tab text */
+.tab-pane .tab-label {
+    -fx-text-fill: #E0E0E0;
+    -fx-font-size: 13px;
+}
+
+/* Close button */
+.tab-pane .tab-close-button {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab-close-button:hover {
+    -fx-background-color: #333333;
+}
+
+/* Content area */
+.tab-pane .tab-content-area {
+    -fx-background-color: #222222;
+    -fx-padding: 16;
+}
+
+
+/* =====================================================
+   CHOICE BOX
+   ===================================================== */
+.choice-box {
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: #2C2C2C;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 4 8;
+    -fx-mark-color: #E0E0E0; /* arrow color */
+}
+
+.choice-box:hover {
+    -fx-background-color: #252525;
+}
+
+.choice-box:focused {
+    -fx-border-color: #3A82F7;
+}
+
+/* Selected value */
+.choice-box .label {
+    -fx-text-fill: #E0E0E0;
+}
+
+/* Arrow button */
+.choice-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.choice-box .arrow {
+    -fx-background-color: #E0E0E0;
+}
+
+/* Popup menu */
+.context-menu {
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: #2C2C2C;
+    -fx-padding: 4;
+}
+
+/* Popup items */
+.menu-item {
+    -fx-background-color: transparent;
+}
+
+.menu-item .label {
+    -fx-text-fill: #E0E0E0;
+}
+
+.menu-item:hover {
+    -fx-background-color: #2A2A2A;
+}
+
+.menu-item:focused {
+    -fx-background-color: #3A82F7;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: white;
+}

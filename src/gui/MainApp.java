@@ -72,7 +72,7 @@ public class MainApp extends Application {
                 }
                 else if (loggedInUser instanceof ScrumMaster){
                     populateScrumMasterComboBoxes();
-                    scene = new Scene(scrumMasterView.getRoot(), 700, 700);
+                    scene = new Scene(scrumMasterView.getRoot(), 900, 700);
                     scene.getStylesheets().add(
                         getClass().getResource("dark.css").toExternalForm()
                     );
@@ -583,6 +583,7 @@ public class MainApp extends Application {
         //scene = new Scene(qaEngineerView.getRoot(), 600, 650);
         stage.setTitle("Login");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
