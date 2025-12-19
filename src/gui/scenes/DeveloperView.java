@@ -16,7 +16,7 @@ public class DeveloperView {
     private final Button viewSprintsButton = new Button("View My Sprints");
     private final Button logoutButton = new Button("Logout");
     
-    // Task Status Change Fields
+    // Task status change Fields
     private final ComboBox<String> taskComboBox = new ComboBox<>();
     private final ComboBox<String> statusComboBox = new ComboBox<>();
     
@@ -34,7 +34,7 @@ public class DeveloperView {
         BorderPane root = new BorderPane();
         root.setPrefSize(900, 700);
 
-        // Top: Welcome, Capacity, and Logout
+        // Top
         HBox topBox = new HBox();
         topBox.setPadding(new Insets(15, 20, 15, 20));
         topBox.setAlignment(Pos.CENTER_LEFT);
@@ -50,26 +50,24 @@ public class DeveloperView {
         topBox.getChildren().addAll(welcomeLabel, capacityLabel, spacer, logoutButton);
         root.setTop(topBox);
 
-        // Center: Content Area (TabPane)
+        // Center (ta bpane)
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        // Tasks Tab
+        //tabs
         Tab tasksTab = new Tab("My Tasks");
         tasksTab.setContent(createTasksDisplay());
         
-        // Change Status Tab
         Tab statusTab = new Tab("Change Task Status");
         statusTab.setContent(createStatusChangeForm());
         
-        // Sprints Tab
         Tab sprintsTab = new Tab("My Sprints");
         sprintsTab.setContent(createSprintsDisplay());
 
         tabPane.getTabs().addAll(tasksTab, statusTab, sprintsTab);
         root.setCenter(tabPane);
 
-        // Bottom: Status
+        // Bottom
         HBox bottomBox = new HBox();
         bottomBox.setPadding(new Insets(10, 20, 10, 20));
         bottomBox.setAlignment(Pos.CENTER_LEFT);

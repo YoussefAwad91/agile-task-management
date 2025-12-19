@@ -1,102 +1,62 @@
-// javac -d ../out (Get-ChildItem -Recurse -Filter *.java).FullName
-// java -cp ../out app.Main
-package app;
-import database.Database;
-import entities.*;
-import entities.users.*;
-import entities.workitems.*;
-import entities.Enum.*;
-import service.*;
-import util.PasswordHasher;
-import dao.*;
-import java.time.LocalDate;
+// package app;
 
-public class Main {
+// import database.Database;
+// import entities.Enum.*;
+// import entities.users.*;
+// import entities.workitems.*;
 
-    public static void main(String[] args) {
+// public class Main {
+//     public static void main(String[] args) {
+//         // Initialize in-memory "database"
+//         Database.initialize();
+//         System.out.println("Database initialized.");
 
-        //Initialize database memory 
-        Database.initialize();
+//         // Create users (provide simple manual IDs)
+//         Developer dev = new Developer("Dev One", "dev1@example.com", "dev1", "pass1", UserRole.DEVELOPER);
+//         QAEngineer qa = new QAEngineer("QA One", "qa1@example.com", "qa1", "pass2", UserRole.QA);
+//         ScrumMaster sm = new ScrumMaster("SM One", "sm1@example.com", "sm1", "pass3", UserRole.SCRUM_MASTER);
+//         Stakeholder sh = new Stakeholder("SH One", "sh1@example.com", "sh1", "pass4", UserRole.STAKEHOLDER);
 
-        // DAO objects 
-        UserDAO userDAO = new UserDAO();
-        EpicDAO epicDAO = new EpicDAO();
-        StoryDAO storyDAO = new StoryDAO();
-        TaskDAO taskDAO = new TaskDAO();
-        SprintDAO sprintDAO = new SprintDAO();
+//         System.out.println("Created users:");
+//         for (User u : Database.users) {
+//             System.out.println(" - " + u);
+//         }
+//         // Create a Task
+//         Task task1 = new Task("Implement login", "Implement login feature", sh, dev, 8 ,WorkItemType.TASK, Status.TODO);
+//         System.out.println("\nCreated Task: " + task1);
 
-        // Service objects
-        AuthService authService = new AuthService();
-        WorkItemService workItemService = new WorkItemService();
+//         // Developer starts working
+//         dev.changeTaskStatus(task1, Status.IN_PROGRESS);
+//         System.out.println("After dev starts: " + task1);
 
-        // Create sample users 
-        User stakeholder1 = new Stakeholder("Malak", "malak@mail.com", "malak1", "10206", UserRole.STAKEHOLDER);
-        User developer1 = new Developer("konouz", "Konouz@mail.com", "konouz2", "8206", UserRole.DEVELOPER);
-        User qa1 = new QAEngineer("Amr","Amr@mail.com", "Amr3", "17804", UserRole.QA);
-        User scrumMaster1 = new ScrumMaster("Awad", "Awad@mail.com", "Awad4", "9105", UserRole.SCRUM_MASTER);
-        authService.register(stakeholder1);
-        authService.register(developer1);
-        authService.register(qa1);
-        authService.register(scrumMaster1);
-        User qa2 = new QAEngineer("Awad", "Awad@mail.com", "Awad4", "9105", UserRole.SCRUM_MASTER);
-        System.out.println(authService.register(qa2));
+//         // Developer finishes
+//         dev.changeTaskStatus(task1, Status.DONE);
+//         System.out.println("After dev finishes: " + task1);
 
-        System.out.println("Users registered successfully!");
+//         // QA verifies
+//         qa.verifyTask(task1);
+//         System.out.println("After QA verify: " + task1);
 
+//         // Report a bug for the task (QA)
+//         Bug bug1 = qa.reportBug(task1, "Login fails when username contains spaces", 3, Severity.MEDIUM, dev);
+//         System.out.println("\nReported Bug: " + bug1);
 
-        //Create an Epic 
-        Epic epic1 = new Epic("Epic1 Title", "Epic1 Description", stakeholder1, developer1, 3, WorkItemType.EPIC, Status.TODO);
-        epicDAO.addEpic(epic1);
+//         // Print database summary
+//         System.out.println("\nDatabase summary:");
+//         System.out.println(" - Users: " + Database.users.size());
+//         System.out.println(" - Tasks: " + Database.tasks.size());
+//         System.out.println(" - Bugs: " + Database.bugs.size());
 
-        System.out.println("Epic created!");
+//         System.out.println("\nAll tasks:");
+//         for (Task t : Database.tasks) {
+//             System.out.println(" - " + t);
+//         }
 
+//         System.out.println("\nAll bugs:");
+//         for (Bug b : Database.bugs) {
+//             System.out.println(" - " + b);
+//         }
 
-        //Create a Story under the Epic
-        Story story1 = new Story( "Story Title", "Story Description", stakeholder1, developer1, 5, WorkItemType.STORY, Status.TODO);
-        storyDAO.addStory(story1);
-        epic1.addStory(story1);
-
-        System.out.println("Story created and linked to Epic!");
-
-        //Creates Task 
-        Task task1 = new Task("Task Title", "Task Description", stakeholder1, null, 3, WorkItemType.TASK, Status.TODO);
-        taskDAO.addTask(task1);
-        story1.addSubtask(task1);
-
-        System.out.println("Task created and added to Story!");
-
-        //Assign developer to task
-        workItemService.assignUserToWorkItem(task1, developer1);
-        System.out.println("Task assigned to Developer!");
-
-        // Change task status
-        workItemService.changeWorkItemStatus(task1, Status.IN_PROGRESS);
-        System.out.println("Task moved to IN_PROGRESS!");
-
-        // QA verifies task 
-        workItemService.changeWorkItemStatus(task1, Status.DONE);
-        ((QAEngineer) qa1).verifyTask(task1);
-        System.out.println("Task verified by QA!");
-
-        // Scrummaster creates a sprint 
-        Sprint sprint = new Sprint("SP1", LocalDate.now(), LocalDate.now().plusDays(7), "Finish user login");
-        sprintDAO.addSprint(sprint);
-        sprint.addTeamMember(developer1);
-        sprint.addWorkItem(task1);
-
-        System.out.println("Sprint created and Task added!");
-
-
-        System.out.println(sprint.getBacklog());
-        //results
-        System.out.println("Epic: " + epic1.getTitle());
-        System.out.println("Story: " + story1.getTitle());
-        System.out.println("Task Status: " + task1.getStatus());
-        System.out.println("Sprint Progress: " + sprint.calculateProgress() + "%");
-
-        System.out.println("\n Everything is working successfully");
-
-        System.out.println(Database.users);
-        System.out.println(PasswordHasher.verify("10206",(userDAO.findByUsername("malak1").getPassword())));
-    }
-}
+//         System.out.println("\nTest run complete.");
+//     }
+// }

@@ -52,7 +52,7 @@ public class ScrumMasterView {
         BorderPane root = new BorderPane();
         root.setPrefSize(950, 750);
 
-        // Top: Welcome and Logout
+        // Top
         HBox topBox = new HBox();
         topBox.setPadding(new Insets(15, 20, 15, 20));
         topBox.setAlignment(Pos.CENTER_LEFT);
@@ -66,35 +66,29 @@ public class ScrumMasterView {
         topBox.getChildren().addAll(welcomeLabel, spacer, logoutButton);
         root.setTop(topBox);
 
-        // Center: Content Area (TabPane)
+        // Center: tab pane
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        // Create Sprint Tab
+        //tabs
         Tab createSprintTab = new Tab("Create Sprint");
         createSprintTab.setContent(createSprintForm());
         
-        // Create Task Tab
         Tab createTaskTab = new Tab("Create Task");
         createTaskTab.setContent(createTaskForm());
         
-        // Assign Work Item Tab
         Tab assignWorkTab = new Tab("Assign Work Item");
         assignWorkTab.setContent(createAssignWorkItemForm());
         
-        // Assign User Tab
         Tab assignUserTab = new Tab("Assign User");
         assignUserTab.setContent(createAssignUserForm());
         
-        // Reopen Work Item Tab
         Tab reopenTab = new Tab("Reopen Work Item");
         reopenTab.setContent(createReopenForm());
         
-        // View Sprints Tab
         Tab sprintsTab = new Tab("All Sprints");
         sprintsTab.setContent(createSprintsDisplay());
         
-        // Progress Tab
         Tab progressTab = new Tab("Sprint Progress");
         progressTab.setContent(createProgressDisplay());
 
@@ -109,7 +103,7 @@ public class ScrumMasterView {
         );
         root.setCenter(tabPane);
 
-        // Bottom: Status
+        // Bottom
         HBox bottomBox = new HBox();
         bottomBox.setPadding(new Insets(10, 20, 10, 20));
         bottomBox.setAlignment(Pos.CENTER_LEFT);

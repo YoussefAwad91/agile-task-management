@@ -34,7 +34,7 @@ public class StakeholderView {
         BorderPane root = new BorderPane();
         root.setPrefSize(900, 700);
 
-        // Top: Welcome and Logout
+        // Top
         HBox topBox = new HBox();
         topBox.setPadding(new Insets(15, 20, 15, 20));
         topBox.setAlignment(Pos.CENTER_LEFT);
@@ -48,26 +48,24 @@ public class StakeholderView {
         topBox.getChildren().addAll(welcomeLabel, spacer, logoutButton);
         root.setTop(topBox);
 
-        // Center: Content Area (TabPane)
+        // Center: tab pane
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        // Epic Tab
+        //tabs
         Tab epicTab = new Tab("Create Epic");
         epicTab.setContent(createEpicForm());
         
-        // Story Tab
         Tab storyTab = new Tab("Create Story");
         storyTab.setContent(createStoryForm());
         
-        // Display Tab
         Tab displayTab = new Tab("Work Items");
         displayTab.setContent(createDisplayArea());
 
         tabPane.getTabs().addAll(epicTab, storyTab, displayTab);
         root.setCenter(tabPane);
 
-        // Bottom: Status
+        // Bottom
         HBox bottomBox = new HBox();
         bottomBox.setPadding(new Insets(10, 20, 10, 20));
         bottomBox.setAlignment(Pos.CENTER_LEFT);

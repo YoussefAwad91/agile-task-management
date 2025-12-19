@@ -31,8 +31,6 @@ public abstract class WorkItem {
 }
 //public abstract void changeStatus(Status newStatus);
 
-
-
     //Methods needed
     public String getId(){
     return id;

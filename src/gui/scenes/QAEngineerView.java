@@ -43,7 +43,7 @@ public class QAEngineerView {
         BorderPane root = new BorderPane();
         root.setPrefSize(900, 700);
 
-        // Top: Welcome and Logout
+        // Top
         HBox topBox = new HBox();
         topBox.setPadding(new Insets(15, 20, 15, 20));
         topBox.setAlignment(Pos.CENTER_LEFT);
@@ -57,34 +57,30 @@ public class QAEngineerView {
         topBox.getChildren().addAll(welcomeLabel, spacer, logoutButton);
         root.setTop(topBox);
 
-        // Center: Content Area (TabPane)
+        // Center: (tab pane)
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        // Tasks to Verify Tab
+        //tabs
         Tab tasksTab = new Tab("Tasks to Verify");
         tasksTab.setContent(createTasksDisplay());
         
-        // Verify Task Tab
         Tab verifyTab = new Tab("Verify Task");
         verifyTab.setContent(createVerifyTaskForm());
         
-        // Assign Task to QA Tab
         Tab assignTab = new Tab("Assign Task to Me");
         assignTab.setContent(createAssignTaskForm());
         
-        // Report Bug Tab
         Tab bugTab = new Tab("Report Bug");
         bugTab.setContent(createReportBugForm());
         
-        // View Bugs Tab
         Tab bugsTab = new Tab("Reported Bugs");
         bugsTab.setContent(createBugsDisplay());
 
         tabPane.getTabs().addAll(tasksTab, verifyTab, assignTab, bugTab, bugsTab);
         root.setCenter(tabPane);
 
-        // Bottom: Status
+        // Bottom
         HBox bottomBox = new HBox();
         bottomBox.setPadding(new Insets(10, 20, 10, 20));
         bottomBox.setAlignment(Pos.CENTER_LEFT);

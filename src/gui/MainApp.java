@@ -17,7 +17,6 @@ import java.time.LocalDate;
 
 import gui.scenes.*;
 
-import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -46,7 +45,7 @@ public class MainApp extends Application {
         developerView = new DeveloperView();
 
         // control
-        // ---------------- sign in ----------------
+        // ---------------- sign in view ----------------
         (loginView.getSignInButton()).setOnAction(event -> {
             User user = authService.login((loginView.getUsernameField()).getText(), (loginView.getPasswordField()).getText());
             if (user != null) {
@@ -109,7 +108,7 @@ public class MainApp extends Application {
             stage.setScene(scene);
         });
 
-        // ---------------- register ----------------
+        // ---------------- register view ----------------
         (registerView.getRegisterButton()).setOnAction(event ->{
             User user = null;
             switch((registerView.getRoleBox()).getValue()){
@@ -167,7 +166,7 @@ public class MainApp extends Application {
             }
         });
 
-        // --------- developer ----------
+        // --------- developer view ----------
         (developerView.getViewMyTasksButton()).setOnAction(event ->{
             if (loggedInUser == null) return;
             StringBuilder tasks_string = new StringBuilder();
@@ -245,7 +244,7 @@ public class MainApp extends Application {
             stage.setScene(scene);
         });
 
-        // --------------- qa -----------------
+        // --------------- qa view -----------------
         (qaEngineerView.getViewTasksButton()).setOnAction(event -> {
             if (loggedInUser == null) return;
             StringBuilder tasks_string = new StringBuilder();
@@ -359,7 +358,7 @@ public class MainApp extends Application {
             stage.setScene(scene);
         });
 
-        // ------------- scrummaster --------------
+        // ------------- scrummaster view --------------
         (scrumMasterView.getCreateSprintButton()).setOnAction(event -> {
             String title = scrumMasterView.getSprintTitleField().getText();
             String objective = scrumMasterView.getSprintObjectiveField().getText();
@@ -385,7 +384,6 @@ public class MainApp extends Application {
             int hrs = 0; try { hrs = Integer.parseInt(hrsText); } catch (NumberFormatException ex) { hrs = 0; }
             if (title == null || title.isEmpty()) { scrumMasterView.getStatusLabel().setText("Task title required."); return; }
             
-            // Get assigned developer if selected
             String selectedDeveloper = scrumMasterView.getAssignDeveloperComboBox().getValue();
             User assignedDev = null;
             if (selectedDeveloper != null && !selectedDeveloper.isEmpty()) {
@@ -507,7 +505,7 @@ public class MainApp extends Application {
             stage.setScene(scene);
         });
 
-        // -------------- stakeholder --------------
+        // -------------- stakeholder view --------------
         (stakeholderView.getCreateEpicButton()).setOnAction(event -> {
             if (loggedInUser == null) return;
             String title = stakeholderView.getEpicTitleField().getText();
@@ -575,12 +573,6 @@ public class MainApp extends Application {
         scene.getStylesheets().add(
             getClass().getResource("dark.css").toExternalForm()
         );
-
-        //scene = new Scene(registerView.getRoot(), 500, 300);
-        //scene = new Scene(stakeholderView.getRoot(), 600, 600);
-        //scene = new Scene(scrumMasterView.getRoot(), 700, 700);
-        //scene = new Scene(developerView.getRoot(), 500, 400);
-        //scene = new Scene(qaEngineerView.getRoot(), 600, 650);
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.setResizable(false);

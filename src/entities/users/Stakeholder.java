@@ -8,11 +8,12 @@ public Stakeholder(String name, String email, String username, String password, 
 super(name,email,username, password,role) ;
 }
 
-//todo: integrate with GUI
-public void createEpic(){
-}
-public void createStory(){
+//implemented in epic + story DAOs and integrated with GUI
+// public void createEpic(){
+    
+// }
+// public void createStory(){
 
-}
+// }
 
 }
